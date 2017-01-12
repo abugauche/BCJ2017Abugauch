@@ -62,7 +62,7 @@ public class ExtendedCondition {
                 "extendedDate=" + day +
                 ", high=" + high +
                 ", low=" + low +
-                ", condition=" + condition +
+                ", Actually day=" + condition.getDate() +
                 ", weather=" + weather +
                 '}';
     }
