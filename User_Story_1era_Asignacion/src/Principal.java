@@ -8,15 +8,16 @@ public class Principal {
 
         Scanner sd = new Scanner(System.in);
         System.out.println("----------WELCOME US01 BCJAbugauch----------");
-        System.out.println("Dou you want to enter? [Y/N]");
-        while (sd.hasNext() && (sd.nextLine().equalsIgnoreCase("y"))) {
+        System.out.println("Dou you want to enter? [1:Y/2:N]");
+        int op=sd.nextInt();
+        while (op==1) {
             System.out.println("Option: 1) Load data 2) Check DB Connection 99)Exit)");
             int opcion = sd.nextInt();
             switch(opcion){
                 case 1: {
                     Scanner sc = new Scanner(System.in);
 
-                    System.out.println("Country");
+                    System.out.println("------Country------");
                     System.out.println("Enter country name: ");
                     String name  = sc.nextLine();
                     System.out.println("Two-digit country code: ");
@@ -25,7 +26,7 @@ public class Principal {
                     String alpa3_code = sc.nextLine();
                     Country country = new Country(name, alpa2_code, alpa3_code);
 
-                    System.out.println("State");
+                    System.out.println("------State------");
                     System.out.println("Name: ");
                     String nameS = sc.nextLine();
                     System.out.println("Abbreviation: ");
@@ -36,7 +37,7 @@ public class Principal {
                     int area = sc.nextInt();
                     State state = new State(nameS, abbr, area, capital, country);
 
-                    System.out.println("Wind");
+                    System.out.println("------Wind------");
                     System.out.println("Id Wind: ");
                     int idWind = sc.nextInt();
                     System.out.println("Chill: ");
@@ -47,7 +48,7 @@ public class Principal {
                     int speed = sc.nextInt();
                     Wind wind = new Wind(idWind, chill, direction, speed);
 
-                    System.out.println("Atmosphere");
+                    System.out.println("------Atmosphere------");
                     System.out.println("IdAtmosphere: ");
                     int idAtmosphere = sc.nextInt();
                     System.out.println("Humidity: ");
@@ -61,7 +62,7 @@ public class Principal {
                     Atmosphere atmosphere = new Atmosphere(idAtmosphere, humidity, presseure, rising, visibility);
 
                     Scanner sc2 = new Scanner(System.in);
-                    System.out.println("Weather");
+                    System.out.println("------Weather------");
                     System.out.println("Description: ");
                     String description = sc2.nextLine();
                     System.out.println("IdWeather: ");
@@ -69,7 +70,7 @@ public class Principal {
                     Weather weather = new Weather(idWeather, description);
 
                     Scanner sc3 = new Scanner(System.in);
-                    System.out.println("Condition ");
+                    System.out.println("------Condition------");
                     System.out.println("Actually date: ");
                     String date = sc3.nextLine();
                     System.out.println("Temperature: ");
@@ -77,7 +78,7 @@ public class Principal {
                     Condition condition = new Condition(date, temp, state, weather, atmosphere, wind);
                     System.out.println(condition.toString());
 
-                    System.out.println("Extended Condition");
+                    System.out.println("------Extended Condition------");
                     ExtendedCondition  [] extendedCondition = new ExtendedCondition[10];
                     for(int i=0; i<extendedCondition.length;i++){
                         Scanner sc4 = new Scanner(System.in);
@@ -91,7 +92,7 @@ public class Principal {
                         int low = sc4.nextInt();
                         System.out.println("High: ");
                         int high = sc4.nextInt();
-                        extendedCondition [i] = new ExtendedCondition(i, high, low, condition, weather1);
+                        extendedCondition [i] = new ExtendedCondition((i+1), high, low, condition, weather1);
                     }
                     for(ExtendedCondition iterador : extendedCondition){
                         System.out.println(iterador);
@@ -107,7 +108,7 @@ public class Principal {
 
                 }
                 case 99: {
-                    System.out.println("Good bye!!");
+                    System.out.println("Good bye!! Enter 2!");
                     return;
                 }
                 default: {
@@ -117,7 +118,8 @@ public class Principal {
 
             }
 
-            System.out.println("Continue?[Y/N]");
+            System.out.println("Continue?[1:Y/2:N]");
+            op=sd.nextInt();
         }
 
         /*try{
