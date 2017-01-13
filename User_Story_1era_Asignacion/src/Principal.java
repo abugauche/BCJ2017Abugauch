@@ -60,39 +60,44 @@ public class Principal {
                     float visibility = sc.nextFloat();
                     Atmosphere atmosphere = new Atmosphere(idAtmosphere, humidity, presseure, rising, visibility);
 
+                    Scanner sc2 = new Scanner(System.in);
                     System.out.println("Weather");
                     System.out.println("Description: ");
-                    String description = sc.nextLine();
+                    String description = sc2.nextLine();
                     System.out.println("IdWeather: ");
-                    int idWeather = sc.nextInt();
+                    int idWeather = sc2.nextInt();
                     Weather weather = new Weather(idWeather, description);
 
+                    Scanner sc3 = new Scanner(System.in);
                     System.out.println("Condition ");
                     System.out.println("Actually date: ");
-                    String date = sc.nextLine();
+                    String date = sc3.nextLine();
                     System.out.println("Temperature: ");
-                    int temp = sc.nextInt();
+                    int temp = sc3.nextInt();
                     Condition condition = new Condition(date, temp, state, weather, atmosphere, wind);
                     System.out.println(condition.toString());
 
                     System.out.println("Extended Condition");
                     ExtendedCondition  [] extendedCondition = new ExtendedCondition[10];
                     for(int i=0; i<extendedCondition.length;i++){
+                        Scanner sc4 = new Scanner(System.in);
                         System.out.println("------Day " + (i+1)+"------");
                         System.out.println("Weather description: ");
-                        String description1 = sc.nextLine();
+                        String description1 = sc4.nextLine();
                         System.out.println("Id Weather: ");
-                        int idWeather1 = sc.nextInt();
+                        int idWeather1 = sc4.nextInt();
                         Weather weather1 = new Weather(idWeather1,description1);
                         System.out.println("Low: ");
-                        int low = sc.nextInt();
+                        int low = sc4.nextInt();
                         System.out.println("High: ");
-                        int high = sc.nextInt();
-                        extendedCondition [0] = new ExtendedCondition(i, high, low, condition, weather1);
+                        int high = sc4.nextInt();
+                        extendedCondition [i] = new ExtendedCondition(i, high, low, condition, weather1);
                     }
-                    for (int i=0;i<extendedCondition.length;i++){
-                        System.out.println(extendedCondition[i].toString());
+                    for(ExtendedCondition iterador : extendedCondition){
+                        System.out.println(iterador);
                     }
+
+
 
                     break;
                 }
