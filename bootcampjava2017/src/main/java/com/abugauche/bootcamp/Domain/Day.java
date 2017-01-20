@@ -1,12 +1,15 @@
 package com.abugauche.bootcamp.Domain;
 
 /**
- * Created by Usuario on 18/1/2017.
+ * Created by Abugauch Emmanuel  on 18/1/2017.
  */
 public class Day {
     private int day;
     private int month;
     private int year;
+
+    public Day() {
+    }
 
     public Day(int day, int month, int year) {
         this.day = day;

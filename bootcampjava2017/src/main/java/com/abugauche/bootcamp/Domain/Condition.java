@@ -1,5 +1,5 @@
 /**
- * Created by Usuario on 10/1/2017.
+ * Created by Abugauch Emmanuel  on 10/1/2017.
  * Se trata de la condicion del dia actual
  */
 package com.abugauche.bootcamp.Domain;
@@ -11,6 +11,9 @@ public class Condition {
     private Weather weather;
     private  Atmosphere atmosphere;
     private Wind wind;
+
+    public Condition() {
+    }
 
     public Condition(Day date, int temp, State state, Weather weather, Atmosphere atmosphere, Wind wind) {
         this.date = date;

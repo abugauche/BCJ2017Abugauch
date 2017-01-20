@@ -1,11 +1,14 @@
 /**
- * Created by Usuario on 11/1/2017.
+ * Created by Abugauch Emmanuel  on 11/1/2017.
  */
 package com.abugauche.bootcamp.Domain;
 
 public class Weather {
     private int idWeather;
     private String descr;
+
+    public Weather() {
+    }
 
     public Weather(int idWeather, String descr) {
         this.idWeather = idWeather;

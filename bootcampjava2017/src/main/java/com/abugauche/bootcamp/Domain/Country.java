@@ -1,11 +1,14 @@
 /**
- * Created by Usuario on 10/1/2017.
+ * Created by Abugauch Emmanuel  on 10/1/2017.
  */
 package com.abugauche.bootcamp.Domain;
 public class Country {
     private String name;
     private String alpa2_code;
     private String alpa3_code;
+
+    public Country() {
+    }
 
     public Country(String name, String alpa2_code, String alpa3_code) {
         this.name = name;

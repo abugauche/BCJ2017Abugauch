@@ -1,16 +1,19 @@
 /**
- * Created by Usuario on 11/1/2017.
+ * Created by Abugauch Emmanuel  on 11/1/2017.
  */
 package com.abugauche.bootcamp.Domain;
 public class ExtendedCondition {
-    private int day;
+    private int extendedDate;
     private int high;
     private int low;
     private Condition condition;
     private Weather weather;
 
-    public ExtendedCondition(int day, int high, int low, Condition condition, Weather weather) {
-        this.day = day;
+    public ExtendedCondition() {
+    }
+
+    public ExtendedCondition(int extendedDate, int high, int low, Condition condition, Weather weather) {
+        this.extendedDate = extendedDate;
         this.high = high;
         this.low = low;
         this.condition = condition;
@@ -18,11 +21,11 @@ public class ExtendedCondition {
     }
 
     public int getDay() {
-        return day;
+        return extendedDate;
     }
 
     public void setDay(int extendedDate) {
-        this.day = extendedDate;
+        this.extendedDate = extendedDate;
     }
 
     public int getHigh() {
@@ -60,7 +63,7 @@ public class ExtendedCondition {
     @Override
     public String toString() {
         return "ExtendedCondition{" +
-                "extendedDate=" + (day) +
+                "extendedDate=" + (extendedDate) +
                 ", high=" + high +
                 ", low=" + low +
                 ", Actually day=" + condition.getDate() +

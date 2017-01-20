@@ -1,5 +1,5 @@
 /**
- * Created by Usuario on 11/1/2017.
+ * Created by Abugauch Emmanuel  on 11/1/2017.
  */
 package com.abugauche.bootcamp.Domain;
 public class State {
@@ -8,6 +8,9 @@ public class State {
     private int area;//size
     private String capital;
     private Country country;
+
+    public State() {
+    }
 
     public State(String name, String abbr, int area, String capital, Country country) {
         this.name = name;

@@ -1,5 +1,5 @@
 /**
- * Created by Usuario on 10/1/2017.
+ * Created by Abugauch Emmanuel  on 10/1/2017.
  */
 package com.abugauche.bootcamp.Domain;
 public class Wind {
@@ -7,6 +7,9 @@ public class Wind {
     private int chill;
     private int direction;
     private int speed;
+
+    public Wind() {
+    }
 
     public Wind(int idWind, int chill, int direction, int speed) {
         this.idWind = idWind;

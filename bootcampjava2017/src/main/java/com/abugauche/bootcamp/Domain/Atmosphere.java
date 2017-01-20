@@ -1,5 +1,5 @@
 /**
- * Created by Usuario on 10/1/2017.
+ * Created by Abugauch Emmanuel  on 10/1/2017.
  */
 package com.abugauche.bootcamp.Domain;
 public class Atmosphere {
@@ -8,6 +8,9 @@ public class Atmosphere {
     private float presseure;
     private int rising;
     private float visibility;
+
+    public Atmosphere(){
+    }
 
     public Atmosphere(int idAtmosphere, int humidity, float presseure, int rising, float visibility) {
         this.idAtmosphere = idAtmosphere;
