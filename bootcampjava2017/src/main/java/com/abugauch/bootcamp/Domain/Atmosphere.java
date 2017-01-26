@@ -1,12 +1,16 @@
 /**
- * Created by Usuario on 10/1/2017.
+ * Created by Abugauch Emmanuel  on 10/1/2017.
  */
+package com.abugauch.bootcamp.Domain;
 public class Atmosphere {
     private int idAtmosphere;
     private int humidity;
     private float presseure;
     private int rising;
     private float visibility;
+
+    public Atmosphere(){
+    }
 
     public Atmosphere(int idAtmosphere, int humidity, float presseure, int rising, float visibility) {
         this.idAtmosphere = idAtmosphere;
