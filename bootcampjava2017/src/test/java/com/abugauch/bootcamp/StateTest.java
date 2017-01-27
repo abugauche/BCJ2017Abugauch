@@ -49,8 +49,7 @@ public class StateTest {
     public void testCountry(){
         Country a = new Country("Argentina","AR","ARG");
         State instance =  new State();
-        instance.setCountry(a);
-        assertEquals(a,instance.getCountry());
+        instance.setCountry_name(a.getName());
+        assertEquals(a.getName(),instance.getCountry_name());
     }
-
 }

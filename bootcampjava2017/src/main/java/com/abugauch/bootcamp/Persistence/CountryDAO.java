@@ -5,24 +5,28 @@ package com.abugauch.bootcamp.Persistence;
  */
 import com.abugauch.bootcamp.Configuration.DBConnection;
 import com.abugauch.bootcamp.Domain.Country;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import java.util.List;
+@Component
 public class CountryDAO implements defaultDAO<Country> {
     public static final String SQL_INSERT = "INSERT INTO db_abugauch.country (alpha3_code, name, alpha2_code) VALUES(?,?,?)";
-    public static final String SQL_READ = "SELECT * FROM db_abugauch.country WHERE name = ?";
+    public static final String SQL_READ = "SELECT * FROM db_abugauch.country W  HERE name = ?";
     public static final String SQL_READALL = "SELECT * FROM db_abugauch.country";
-    private static final DBConnection conn = DBConnection.getState();
+    @Autowired
+    private  DBConnection dbCon;
 
 
     public boolean create(Country a){
         PreparedStatement ps;
         try {
-            ps = conn.getCnn().prepareStatement(SQL_INSERT);
+            ps = dbCon.getConnection().prepareStatement(SQL_INSERT);
             ps.setString(1,a.getAlpa3_code());
             ps.setString(2,a.getName());
             ps.setString(3,a.getAlpa2_code());
@@ -30,7 +34,7 @@ public class CountryDAO implements defaultDAO<Country> {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return false;
     }
@@ -40,7 +44,7 @@ public class CountryDAO implements defaultDAO<Country> {
         Country a = null;
         try {
             ResultSet res;
-            ps = conn.getCnn().prepareStatement(SQL_READ);
+            ps = dbCon.getConnection().prepareStatement(SQL_READ);
             ps.setString(1,key.toString());
             res = ps.executeQuery();
             while (res.next()){
@@ -49,17 +53,17 @@ public class CountryDAO implements defaultDAO<Country> {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return a;
     }
 
-    public ArrayList<Country> readAll(){
+    public List<Country> readAll(){
         PreparedStatement ps;
         ResultSet res;
-        ArrayList <Country> countries = new ArrayList();
+        List <Country> countries = new ArrayList<Country>();
         try {
-            ps = conn.getCnn().prepareStatement(SQL_READALL);
+            ps = dbCon.getConnection().prepareStatement(SQL_READALL);
             res = ps.executeQuery();
 
             while (res.next()){
@@ -68,7 +72,7 @@ public class CountryDAO implements defaultDAO<Country> {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return countries;
     }

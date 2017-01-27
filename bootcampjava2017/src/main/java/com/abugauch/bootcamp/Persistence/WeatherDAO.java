@@ -13,23 +13,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class WeatherDAO implements defaultDAO<Weather> {
-    public static final String SQL_INSERT = "INSERT INTO db_abugauch.wheathers (idWeather, descr) VALUES(?,?)";
-    public static final String SQL_READ = "SELECT * FROM db_abugauch.wheathers WHERE idWeather = ?";
-    public static final String SQL_READALL = "SELECT * FROM db_abugauch.wheathers";
-    private static final DBConnection conn = DBConnection.getState();
+    public static final String SQL_INSERT = "INSERT INTO db_abugauch.weather (idWeather, description) VALUES(?,?)";
+    public static final String SQL_READ = "SELECT * FROM db_abugauch.weather WHERE idWeather = ?";
+    public static final String SQL_READALL = "SELECT * FROM db_abugauch.weather";
+    private  DBConnection dbCon;
 
 
     public boolean create(Weather a){
         PreparedStatement ps;
         try {
-            ps = conn.getCnn().prepareStatement(SQL_INSERT);
+            ps = dbCon.getConnection().prepareStatement(SQL_INSERT);
             ps.setInt(1,a.getIdWeather());
             ps.setString(2,a.getDescr());
             if (ps.executeUpdate() >0){return true;}
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return false;
     }
@@ -39,7 +39,7 @@ public class WeatherDAO implements defaultDAO<Weather> {
         Weather a = null;
         try {
             ResultSet res;
-            ps = conn.getCnn().prepareStatement(SQL_READ);
+            ps = dbCon.getConnection().prepareStatement(SQL_READ);
             ps.setInt(1,Integer.parseInt(key.toString()));
             res = ps.executeQuery();
             while (res.next()){
@@ -48,7 +48,7 @@ public class WeatherDAO implements defaultDAO<Weather> {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return a;
     }
@@ -58,7 +58,7 @@ public class WeatherDAO implements defaultDAO<Weather> {
         ResultSet res;
         ArrayList <Weather> weathers = new ArrayList();
         try {
-            ps = conn.getCnn().prepareStatement(SQL_READALL);
+            ps = dbCon.getConnection().prepareStatement(SQL_READALL);
             res = ps.executeQuery();
 
             while (res.next()){
@@ -67,7 +67,7 @@ public class WeatherDAO implements defaultDAO<Weather> {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return weathers;
     }

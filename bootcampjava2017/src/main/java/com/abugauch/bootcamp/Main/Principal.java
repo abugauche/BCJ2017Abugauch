@@ -13,18 +13,10 @@ import org.springframework.context.*;
 public class Principal {
     public static void main(String[] args) {
 
-
-        /*Scanner sd = new Scanner(System.in);
-        System.out.println("----------WELCOME US02 BCJAbugauch----------");
-        System.out.println("Dou you want to enter? [1:Y/2:N]");
-        int op=sd.nextInt();
-        while (op==1) {
-            System.out.println("Option: 1) Load data 2) Check DB Connection 99)Exit)");
-            int opcion = sd.nextInt();
-            switch(opcion){
-                case 1: {
+                    DBConnection conn = new DBConnection();
+                    conn.getConnection();
                     Scanner sc = new Scanner(System.in);
-                    DataSource dt = new DataSource();
+                    DayDAO dayDAO = new DayDAO();
                     Scanner scd = new Scanner(System.in);
                     System.out.println("------Day------");
                     System.out.println("Day: ");
@@ -38,8 +30,9 @@ public class Principal {
                     day.setNewMonth(month);
                     day.setNewYear(year);
                     Day d = day.createDay();
-                    dt.insertDay(d);
+                    dayDAO.create(d);
 
+                    CountryDAO countryDAO = new CountryDAO();
                     System.out.println("------Country------");
                     System.out.println("Enter country name: ");
                     String name  = sc.nextLine();
@@ -52,8 +45,9 @@ public class Principal {
                     country.setNewAlpa2_code(alpa2_code);
                     country.setNewAlpa3_code(alpa3_code);
                     Country c = country.createCountry();
-                    dt.insertCountry(c);
+                    countryDAO.create(c);
 
+                    StateDAO stateDAO = new StateDAO();
                     System.out.println("------State------");
                     System.out.println("Name: ");
                     String nameS = sc.nextLine();
@@ -70,8 +64,9 @@ public class Principal {
                     state.setNewCountry(c);
                     state.setNewName(nameS);
                     State s= state.createState();
-                    dt.insertState(s,c);
+                    stateDAO.create(s,c);
 
+                    WindDAO windDAO = new WindDAO();
                     System.out.println("------Wind------");
                     System.out.println("Id Wind: ");
                     int idWind = sc.nextInt();
@@ -87,19 +82,20 @@ public class Principal {
                     wind.setNewIdWind(idWind);
                     wind.setNewSpeed(speed);
                     Wind w = wind.createWind();
-                    dt.insertWind(w);
+                    windDAO.create(w);
 
+                    AtmosphereDAO atmosphereDAO = new AtmosphereDAO();
                     System.out.println("------Atmosphere------");
                     System.out.println("IdAtmosphere: ");
                     int idAtmosphere = sc.nextInt();
                     System.out.println("Humidity: ");
                     int humidity = sc.nextInt();
                     System.out.println("Presseure: ");
-                    float presseure = sc.nextFloat();
+                    Double presseure = sc.nextDouble();
                     System.out.println("Rising: ");
                     int rising = sc.nextInt();
                     System.out.println("Visibility: ");
-                    float visibility = sc.nextFloat();
+                    Double visibility = sc.nextDouble();
                     AtmosphereBuilder atmosphere = new AtmosphereBuilder();
                     atmosphere.setNewHumidity(humidity);
                     atmosphere.setNewIdAtmosphere(idAtmosphere);
@@ -107,9 +103,10 @@ public class Principal {
                     atmosphere.setNewRising(rising);
                     atmosphere.setNewVisibility(visibility);
                     Atmosphere a = atmosphere.createAtmosphere();
-                    dt.insertAtmosphere(a);
+                    atmosphereDAO.create(a);
 
                     Scanner sc2 = new Scanner(System.in);
+                    WeatherDAO weatherDao = new WeatherDAO();
                     System.out.println("------Weather------");
                     System.out.println("Description: ");
                     String description = sc2.nextLine();
@@ -119,9 +116,10 @@ public class Principal {
                     weather.setNewDescr(description);
                     weather.setNewIdWeather(idWeather);
                     Weather we = weather.createWeather();
-                    dt.insertWeather(we);
+                    weatherDao.create(we);
 
                     Scanner sc3 = new Scanner(System.in);
+                    ConditionDAO conditionDAO = new ConditionDAO();
                     System.out.println("------Condition------");
                     System.out.println("Actually date: ");
                     String date = sc3.nextLine();
@@ -135,10 +133,10 @@ public class Principal {
                     condition.setNewWeather(we);
                     condition.setNewWind(w);
                     Condition co = condition.createCondition();
-                    dt.insertCondition(d,temp,s,c,we,a,w);
+                    conditionDAO.create(co,d,temp,s,c,we,a,w);
                     System.out.println(co.toString());
 
-                    System.out.println("------Extended Condition------");
+                  /*  System.out.println("------Extended Condition------");
                     ExtendedConditionBuilder  [] extendedCondition = new ExtendedConditionBuilder[10];
                     for(int i=0; i<extendedCondition.length;i++){
                         Scanner sc4 = new Scanner(System.in);
@@ -165,31 +163,8 @@ public class Principal {
                     }
                     for(ExtendedConditionBuilder iterador : extendedCondition){
                         System.out.println(iterador);
-                    }
+                    }*/
 
-
-
-                    break;
-                }
-                case 2: {
-                    Connection conn = new DBConnection().getConnection();
-                    break;
-
-                }
-                case 99: {
-                    System.out.println("Good bye!! Enter 2!");
-                    return;
-                }
-                default: {
-                    System.out.println("Invalid Option");
-                    break;
-                }
-
-            }
-
-            System.out.println("Continue?[1:Y/2:N]");
-            op=sd.nextInt();
-        }*/
     }
 
 }

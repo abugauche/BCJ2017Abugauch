@@ -8,9 +8,9 @@ import com.abugauch.bootcamp.Domain.Atmosphere;
 public class AtmosphereBuilder {
     private int newIdAtmosphere;
     private int newHumidity;
-    private float newPresseure;
+    private Double newPresseure;
     private int newRising;
-    private float newVisibility;
+    private Double newVisibility;
 
     public AtmosphereBuilder(){
     }
@@ -25,7 +25,7 @@ public class AtmosphereBuilder {
         return this;
     }
 
-    public AtmosphereBuilder setNewPresseure(float newPresseure) {
+    public AtmosphereBuilder setNewPresseure(Double newPresseure) {
         this.newPresseure = newPresseure;
         return this;
     }
@@ -35,7 +35,7 @@ public class AtmosphereBuilder {
         return this;
     }
 
-    public AtmosphereBuilder setNewVisibility(float newVisibility) {
+    public AtmosphereBuilder setNewVisibility(Double newVisibility) {
         this.newVisibility = newVisibility;
         return this;
     }

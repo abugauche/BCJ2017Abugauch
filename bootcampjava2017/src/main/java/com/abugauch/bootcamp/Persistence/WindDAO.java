@@ -16,13 +16,13 @@ public class WindDAO implements defaultDAO<Wind> {
     public static final String SQL_INSERT = "INSERT INTO db_abugauch.wind (idWind, chill, direction, speed) VALUES(?,?,?,?)";
     public static final String SQL_READ = "SELECT * FROM db_abugauch.wind WHERE idWind = ?";
     public static final String SQL_READALL = "SELECT * FROM db_abugauch.wind";
-    private static final DBConnection conn = DBConnection.getState();
+    private  DBConnection dbCon;
 
 
     public boolean create(Wind a){
         PreparedStatement ps;
         try {
-            ps = conn.getCnn().prepareStatement(SQL_INSERT);
+            ps = dbCon.getConnection().prepareStatement(SQL_INSERT);
             ps.setInt(1,a.getIdWind());
             ps.setInt(2,a.getChill());
             ps.setInt(4,a.getDirection());
@@ -31,7 +31,7 @@ public class WindDAO implements defaultDAO<Wind> {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return false;
     }
@@ -41,7 +41,7 @@ public class WindDAO implements defaultDAO<Wind> {
         Wind a = null;
         try {
             ResultSet res;
-            ps = conn.getCnn().prepareStatement(SQL_READ);
+            ps = dbCon.getConnection().prepareStatement(SQL_READ);
             ps.setInt(1,Integer.parseInt(key.toString()));
             res = ps.executeQuery();
             while (res.next()){
@@ -50,7 +50,7 @@ public class WindDAO implements defaultDAO<Wind> {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return a;
     }
@@ -60,7 +60,7 @@ public class WindDAO implements defaultDAO<Wind> {
         ResultSet res;
         ArrayList <Wind> winds = new ArrayList();
         try {
-            ps = conn.getCnn().prepareStatement(SQL_READALL);
+            ps = dbCon.getConnection().prepareStatement(SQL_READALL);
             res = ps.executeQuery();
 
             while (res.next()){
@@ -69,7 +69,7 @@ public class WindDAO implements defaultDAO<Wind> {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return winds;
     }

@@ -5,14 +5,14 @@ package com.abugauch.bootcamp.Domain;
 public class Atmosphere {
     private int idAtmosphere;
     private int humidity;
-    private float presseure;
+    private Double presseure;
     private int rising;
-    private float visibility;
+    private Double visibility;
 
     public Atmosphere(){
     }
 
-    public Atmosphere(int idAtmosphere, int humidity, float presseure, int rising, float visibility) {
+    public Atmosphere(int idAtmosphere, int humidity, Double presseure, int rising, Double visibility) {
         this.idAtmosphere = idAtmosphere;
         this.humidity = humidity;
         this.presseure = presseure;
@@ -36,11 +36,11 @@ public class Atmosphere {
         this.humidity = humidity;
     }
 
-    public float getPresseure() {
+    public Double getPresseure() {
         return presseure;
     }
 
-    public void setPresseure(float presseure) {
+    public void setPresseure(Double presseure) {
         this.presseure = presseure;
     }
 
@@ -52,11 +52,11 @@ public class Atmosphere {
         this.rising = rising;
     }
 
-    public float getVisibility() {
+    public Double getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(float visibility) {
+    public void setVisibility(Double visibility) {
         this.visibility = visibility;
     }
 

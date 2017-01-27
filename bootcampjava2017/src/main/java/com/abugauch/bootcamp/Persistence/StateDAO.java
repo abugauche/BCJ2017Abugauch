@@ -12,19 +12,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class StateDAO {
 
     public static final String SQL_INSERT = "INSERT INTO db_abugauch.state (name, abbr, area, capital, country_name) VALUES(?,?,?,?,?)";
     public static final String SQL_READ = "SELECT * FROM db_abugauch.state WHERE name = ? AND country_name = ?";
     public static final String SQL_READALL = "SELECT * FROM db_abugauch.state";
-    private static final DBConnection conn = DBConnection.getState();
+    private  DBConnection dbCon;
 
 
     public boolean create(State a,Country c){
         PreparedStatement ps;
         try {
-            ps = conn.getCnn().prepareStatement(SQL_INSERT);
+            ps = dbCon.getConnection().prepareStatement(SQL_INSERT);
             ps.setString(1,a.getName());
             ps.setString(2,a.getAbbr());
             ps.setInt(3,a.getArea());
@@ -34,7 +35,7 @@ public class StateDAO {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return false;
     }
@@ -44,7 +45,7 @@ public class StateDAO {
         State a = null;
         try {
             ResultSet res;
-            ps = conn.getCnn().prepareStatement(SQL_READ);
+            ps = dbCon.getConnection().prepareStatement(SQL_READ);
             ps.setString(1,key1.toString());
             ps.setString(2,key2.toString());
             res = ps.executeQuery();
@@ -54,17 +55,17 @@ public class StateDAO {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return a;
     }
 
-    public ArrayList<State> readAll(){
+    public List<State> readAll(){
         PreparedStatement ps;
         ResultSet res;
-        ArrayList <State> states = new ArrayList();
+        List<State> states = new ArrayList<State>();
         try {
-            ps = conn.getCnn().prepareStatement(SQL_READALL);
+            ps = dbCon.getConnection().prepareStatement(SQL_READALL);
             res = ps.executeQuery();
 
             while (res.next()){
@@ -73,7 +74,7 @@ public class StateDAO {
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return states;
     }

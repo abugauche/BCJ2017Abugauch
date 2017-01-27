@@ -17,23 +17,23 @@ public class AtmosphereDAO implements defaultDAO<Atmosphere> {
     public static final String SQL_READ = "SELECT * FROM db_abugauch.atmosphere WHERE idAtmosphere = ?";
     public static final String SQL_READALL = "SELECT * FROM db_abugauch.atmosphere";
 
-    private static final DBConnection conn = DBConnection.getState();
+    private  DBConnection dbCon;
 
 
     public boolean create(Atmosphere a){
         PreparedStatement ps;
         try {
-            ps = conn.getCnn().prepareStatement(SQL_INSERT);
+            ps = dbCon.getConnection().prepareStatement(SQL_INSERT);
         ps.setInt(1,a.getIdAtmosphere());
         ps.setInt(2,a.getHumidity());
-        ps.setFloat(3,a.getPresseure());
+        ps.setDouble(3,a.getPresseure());
         ps.setInt(4,a.getRising());
-        ps.setFloat(5,a.getVisibility());
+        ps.setDouble(5,a.getVisibility());
         if (ps.executeUpdate() >0){return true;}
     }catch(SQLException ex){
         System.out.println("Storage error"+ex);
     }finally {
-        conn.closeCnn();
+        dbCon.closeCnn();
     }
     return false;
     }
@@ -43,16 +43,16 @@ public class AtmosphereDAO implements defaultDAO<Atmosphere> {
     Atmosphere a = null;
     try {
         ResultSet res;
-        ps = conn.getCnn().prepareStatement(SQL_READ);
+        ps = dbCon.getConnection().prepareStatement(SQL_READ);
         ps.setInt(1,Integer.parseInt(key.toString()));
         res = ps.executeQuery();
         while (res.next()){
-            a = new Atmosphere(res.getInt(1),res.getInt(2),res.getFloat(3),res.getInt(4), res.getInt(5));
+            a = new Atmosphere(res.getInt(1),res.getInt(2),res.getDouble(3),res.getInt(4), res.getDouble(5));
         }
     }catch(SQLException ex){
         System.out.println("Storage error"+ex);
     }finally {
-        conn.closeCnn();
+        dbCon.closeCnn();
     }
     return a;
     }
@@ -62,16 +62,16 @@ public class AtmosphereDAO implements defaultDAO<Atmosphere> {
         ResultSet res;
         ArrayList <Atmosphere> atmospheres = new ArrayList();
         try {
-            ps = conn.getCnn().prepareStatement(SQL_READALL);
+            ps = dbCon.getConnection().prepareStatement(SQL_READALL);
             res = ps.executeQuery();
 
             while (res.next()){
-                atmospheres.add(new Atmosphere(res.getInt(1),res.getInt(2),res.getFloat(3),res.getInt(4), res.getFloat(5)));
+                atmospheres.add(new Atmosphere(res.getInt(1),res.getInt(2),res.getDouble(3),res.getInt(4), res.getDouble(5)));
             }
         }catch(SQLException ex){
             System.out.println("Storage error"+ex);
         }finally {
-            conn.closeCnn();
+            dbCon.closeCnn();
         }
         return atmospheres;
     }

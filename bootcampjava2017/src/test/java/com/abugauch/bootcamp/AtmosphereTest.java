@@ -30,16 +30,15 @@ public class AtmosphereTest  {
 
         assertEquals(humidity,a.getHumidity());
     }
-
-   /* @Test
+    @Test
     public void testPresseure(){
-        float presseure = 1.5f;
+        Double presseure = 1.5;
         AtmosphereBuilder instance =  new AtmosphereBuilder();
         instance.setNewPresseure(presseure);
         Atmosphere a = instance.createAtmosphere();
         assertEquals(presseure,a.getPresseure(),0.0);
     }
-*/
+
     @Test
     public void testRising(){
         int rising = 1;
@@ -50,12 +49,12 @@ public class AtmosphereTest  {
         assertEquals(rising,a.getRising());
     }
 
-  /*  @Test
+   @Test
     public void testVisibility(){
-        float visbility = 1.5f;
+        Double visbility = 1.5;
         AtmosphereBuilder instance =  new AtmosphereBuilder();
         instance.setNewVisibility(visbility);
         Atmosphere a = instance.createAtmosphere();
         assertEquals(visbility,a.getVisibility(),0.0);
-    }*/
+    }
 }
